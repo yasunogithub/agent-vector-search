@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+.bun/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.env
+*.egg-info/
+
+# LanceDB data (local only)
+.lancedb/
+*.lance/
+
+# Embeddings cache
+.cache/
+models/
+
+# Build outputs
+dist/
+*.tsbuildinfo
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Test
+coverage/
+.pytest_cache/
+
+# Secrets
+.env.local
+.env.*.local
+secrets/

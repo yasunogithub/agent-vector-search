@@ -1,0 +1,22 @@
+{
+  "name": "agent-vector-search",
+  "version": "0.1.0",
+  "description": "Semantic vector search for AI agent history using LanceDB",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --watch src/server.ts",
+    "start": "bun run src/server.ts",
+    "build": "bun build src/server.ts --outdir dist --target bun",
+    "embed": "python src/embeddings/embed.py",
+    "ingest": "bun run src/ingest.ts",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "@lancedb/lancedb": "^0.13.0",
+    "hono": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.0.0"
+  }
+}
