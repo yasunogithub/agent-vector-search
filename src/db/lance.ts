@@ -38,7 +38,7 @@ export async function getOrCreateTable(name: string = 'observations'): Promise<T
   return connection.createEmptyTable(name, {
     id: 'string',
     text: 'string',
-    vector: 'vector(1024)', // hotchpotch model dimension
+    vector: 'vector(384)', // multilingual-e5-small dimension
     project: 'string',
     session_id: 'string',
     timestamp: 'string',

@@ -8,8 +8,8 @@ import sys
 import json
 from sentence_transformers import SentenceTransformer
 
-# Japanese-optimized static embedding model
-MODEL_NAME = "hotchpotch/static-embedding-japanese"
+# Multilingual embedding model (supports Japanese, 384 dimensions)
+MODEL_NAME = "intfloat/multilingual-e5-small"
 
 def main():
     # Load model (cached after first run)
