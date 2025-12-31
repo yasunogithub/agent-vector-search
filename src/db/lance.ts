@@ -33,17 +33,24 @@ export async function getOrCreateTable(name: string = 'observations'): Promise<T
     return connection.openTable(name);
   }
 
-  // Create with initial schema (empty data)
-  // Will be populated during ingest
-  return connection.createEmptyTable(name, {
-    id: 'string',
-    text: 'string',
-    vector: 'vector(384)', // multilingual-e5-small dimension
-    project: 'string',
-    session_id: 'string',
-    timestamp: 'string',
-    type: 'string',
-  });
+  // Create table with sample data to define schema
+  // LanceDB infers schema from the data structure
+  const sampleData: Observation[] = [{
+    id: '__schema_init__',
+    text: 'Schema initialization record',
+    vector: new Array(384).fill(0), // 384-dim zero vector
+    project: '',
+    session_id: '',
+    timestamp: new Date().toISOString(),
+    type: 'schema_init',
+  }];
+
+  const table = await connection.createTable(name, sampleData);
+
+  // Delete the initialization record
+  await table.delete('id = "__schema_init__"');
+
+  return table;
 }
 
 export async function addObservations(observations: Observation[]): Promise<void> {

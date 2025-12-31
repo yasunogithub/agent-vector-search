@@ -2,9 +2,13 @@
  * Semantic search functionality
  */
 import { spawn } from 'bun';
+import { join } from 'path';
+import { homedir } from 'os';
 import { searchSimilar, type Observation } from '../db/lance';
 
-const EMBED_SCRIPT = 'src/embeddings/embed.py';
+const VECTOR_SEARCH_DIR = join(homedir(), 'dev/github.com/yasunogithub/agent-vector-search');
+const EMBED_SCRIPT = join(VECTOR_SEARCH_DIR, 'src/embeddings/embed.py');
+const PYTHON_PATH = join(VECTOR_SEARCH_DIR, '.venv/bin/python');
 
 /**
  * Generate embedding for a query text using Python script
@@ -13,10 +17,11 @@ export async function embedQuery(text: string): Promise<number[]> {
   const input = JSON.stringify({ id: 'query', text }) + '\n';
 
   const proc = spawn({
-    cmd: ['python', EMBED_SCRIPT],
+    cmd: [PYTHON_PATH, EMBED_SCRIPT],
     stdin: 'pipe',
     stdout: 'pipe',
     stderr: 'pipe',
+    cwd: VECTOR_SEARCH_DIR,
   });
 
   proc.stdin.write(input);

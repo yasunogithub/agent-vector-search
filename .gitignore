@@ -22,6 +22,8 @@ models/
 # Build outputs
 dist/
 *.tsbuildinfo
+agent-vector-search
+*.bun-build
 
 # IDE
 .idea/
