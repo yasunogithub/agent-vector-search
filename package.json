@@ -9,7 +9,8 @@
     "build": "bun build --compile --outfile agent-vector-search src/server.ts",
     "embed": "python src/embeddings/embed.py",
     "ingest": "bun run src/ingest.ts",
-    "test": "bun test"
+    "test": "bun test",
+    "e2e": "bun test e2e/"
   },
   "dependencies": {
     "@lancedb/lancedb": "^0.13.0",

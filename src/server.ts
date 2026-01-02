@@ -84,4 +84,5 @@ console.log(`Starting server on port ${port}...`);
 export default {
   port,
   fetch: app.fetch,
+  idleTimeout: 60, // 60 seconds for embedding operations
 };
